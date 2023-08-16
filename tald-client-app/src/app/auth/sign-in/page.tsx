@@ -44,6 +44,7 @@ export default function Page() {
       const result = await signIn("credentials", {
         email: data.get("email"),
         password: data.get("password"),
+        type: 'Vendor',
         redirect: true,
         callbackUrl: '/'
       });
@@ -52,6 +53,15 @@ export default function Page() {
       console.log(error);
     }
   };
+
+  const handleGoogle = async () => {
+    try {
+      const response = await signIn('google');
+      console.log({ response });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -111,6 +121,15 @@ export default function Page() {
               </Link>
             </Grid>
           </Grid>
+          <Button
+            type="button"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleGoogle}
+          >
+            Continue with Google
+          </Button>
         </Box>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
