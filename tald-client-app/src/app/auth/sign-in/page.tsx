@@ -12,23 +12,24 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { signIn } from "next-auth/react";
 import styles from "../auth.module.scss";
+import Header from "@/components/header/Header";
 
 function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+  // return (
+  //   <Typography
+  //     variant="body2"
+  //     color="text.secondary"
+  //     align="center"
+  //     {...props}
+  //   >
+  //     {"Copyright © "}
+  //     <Link color="inherit" href="https://mui.com/">
+  //       Your Website
+  //     </Link>{" "}
+  //     {new Date().getFullYear()}
+  //     {"."}
+  //   </Typography>
+  // );
 }
 
 export default function Page() {
