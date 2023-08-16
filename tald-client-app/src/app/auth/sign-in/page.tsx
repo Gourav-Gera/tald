@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { signIn } from "next-auth/react";
 import styles from "../auth.module.scss";
 
 function Copyright(props: any) {
@@ -31,13 +32,25 @@ function Copyright(props: any) {
 }
 
 export default function Page() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+    try {
+      const result = await signIn("credentials", {
+        email: data.get("email"),
+        password: data.get("password"),
+        redirect: true,
+        callbackUrl: '/'
+      });
+      console.log({ result });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

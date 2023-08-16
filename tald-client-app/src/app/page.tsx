@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Testimonial from "@/components/testimonial/Testimonial";
+import Profile from "@/components/user/Profile";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
             />
           </a>
         </div>
+        <Profile />
       </div>
       <div className={styles.center}>
         <Image
