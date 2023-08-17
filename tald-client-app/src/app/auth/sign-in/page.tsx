@@ -1,10 +1,7 @@
 "use client";
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,27 +9,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { signIn } from "next-auth/react";
 import styles from "../auth.module.scss";
+import Image from 'next/image';
+import headerLogo from "../../../assets/images/header-logo.png"
+import RootLayout from "@/app/layout";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 export default function Page() {
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +28,7 @@ export default function Page() {
         password: data.get("password"),
         type: 'Vendor',
         redirect: true,
-        callbackUrl: '/'
+        callbackUrl: "/",
       });
       console.log({ result });
     } catch (error) {
@@ -63,76 +45,94 @@ export default function Page() {
     }
   }
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>signin</Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="off"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="off"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="secondary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+	return (
+    <div className={styles.signInWrapper}>
+		<Box className={styles.signInHeader} sx={{ flexGrow: 1 }}>
+			<Container maxWidth="xl">
+				<Typography variant="h6" color="inherit" component="div">
+					<Image
+						src={headerLogo}
+						width={84}
+						height={35}
+						className={styles.logoImage}
+						alt="logo image"
+					/>
+				</Typography>
+			</Container>
+		</Box>
+      <Container component="main" maxWidth="sm">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Welcome Back
+          </Typography>
+          <Box
+				component="form"
+				className="w-100"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              variant="standard"
+              label="Email Address"
+              name="email"
+              autoComplete="off"
+            />
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              variant="standard"
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="off"
+            />
+            <Grid container className={styles.forgotPasswordWrap}>
+					{/* <Grid item xs={6}>
+						<FormControlLabel
+							control={<Checkbox value="remember" color="secondary" />}
+							label="Remember me" />
+					</Grid>   */}
+					<Grid item xs={12} className="text-align-right">
+						<Link href="#" variant="body2">
+							Forgot password?
+						</Link>
+					</Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+           
+            <Button
+              	type="submit"
+					fullWidth
+					className="primaryOutline"
+              	variant="contained"
+              	sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container className="text-align-center">
+              <Grid className="w-100" item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-          <Button
-            type="button"
-            fullWidth
-            variant="outlined"
-            sx={{ mt: 3, mb: 2 }}
-            onClick={handleGoogle}
-          >
-            Continue with Google
-          </Button>
+          </Box>
         </Box>
-      </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
-    </Container>
+      </Container>
+    </div>
   );
 }
