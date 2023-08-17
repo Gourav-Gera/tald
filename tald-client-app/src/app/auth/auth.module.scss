@@ -1,0 +1,10 @@
+.signInWrapper{
+    background: var(--gray-gradient, linear-gradient(180deg, #FFF 0%, #F4F4F2 41.59%, #F1F0EE 100%));
+    height: 100vh;
+    .signInHeader{
+        padding: 30px 20px 20px 20px;
+    }
+    .forgotPasswordLink{
+        color: var(--black);
+    }
+}
