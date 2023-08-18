@@ -1,14 +1,14 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import ThemeRegistry from "./ThemeRegistry";
-import { NextAuthProvider } from "./providers";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { NextAuthProvider } from './providers';
+import ThemeRegistry from '@/lib/ThemeRegistry/ThemeRegistry';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Tald",
-  description: "Tald Client Website",
+  title: 'Tald',
+  description: 'Tald Client Website',
 };
 
 export default function RootLayout({
@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={inter.className}>
-        <NextAuthProvider>
-          <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
-        </NextAuthProvider>
+        <ThemeRegistry>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );
