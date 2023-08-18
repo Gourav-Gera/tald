@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Button } from "@mui/material";
-import { signIn, signOut } from "next-auth/react";
-import Link from "next/link";
+import { Button } from '@mui/material';
+import { signIn, signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 export const LoginButton = () => {
   return (
@@ -14,7 +14,7 @@ export const LoginButton = () => {
 
 export const RegisterButton = () => {
   return (
-    <Link href="/register" style={{ marginRight: 10 }}>
+    <Link href='/register' style={{ marginRight: 10 }}>
       Register
     </Link>
   );
@@ -29,5 +29,5 @@ export const LogoutButton = () => {
 };
 
 export const ProfileButton = () => {
-  return <Link href="/profile">Profile</Link>;
+  return <Link href='/profile'>Profile</Link>;
 };

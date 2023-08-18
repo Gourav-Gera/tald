@@ -1,9 +1,13 @@
+'use client';
 import Image from "next/image";
 import styles from "./page.module.css";
 import Testimonial from "@/components/testimonial/Testimonial";
 import Profile from "@/components/user/Profile";
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
+  const session = useSession();
+  console.log(session);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
