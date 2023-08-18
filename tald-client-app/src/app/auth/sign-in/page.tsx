@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import { signIn } from 'next-auth/react';
 import styles from '../auth.module.scss';
 import Image from 'next/image';
-// import headerLogo from '../../../assets/images/header-logo.png';
+import headerLogo from '@/assets/header-logo.png';
 
 export default function Page() {
 
@@ -43,14 +43,14 @@ export default function Page() {
     <div className={styles.signInWrapper}>
       <Box className={styles.signInHeader} sx={{ flexGrow: 1 }}>
         <Container maxWidth='xl'>
-          <Typography variant='h6' color='inherit' component='div'>Tald
-            {/* <Image
+          <Typography variant='h6' color='inherit' component='div'>
+            <Image
               src={headerLogo}
               width={84}
               height={35}
               className={styles.logoImage}
               alt='logo image'
-            /> */}
+            />
           </Typography>
         </Container>
       </Box>
